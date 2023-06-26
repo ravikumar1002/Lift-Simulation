@@ -9,3 +9,8 @@
 body {
   font-family: "Inter", sans-serif;
 }
+
+.heading {
+    text-align: center;
+    padding: 1rem 2rem ;
+}
