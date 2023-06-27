@@ -56,3 +56,30 @@ body {
 .hide {
   display: none;
 }
+
+/* ---------------simulations css */
+
+.lift-btn {
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  border: 1px solid transparent;
+}
+
+.lift-btn:hover {
+  border: 1px solid rgb(188, 188, 188);
+  cursor: pointer;
+}
+
+.lift-btn-container {
+  display: flex;
+  gap: 1rem;
+}
+
+.floor-details {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  padding: 1rem 2rem;
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
+}

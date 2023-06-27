@@ -1,37 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Lift Simulations</title>
     <link rel="stylesheet" href="./css/main.css" />
-  </head>
+</head>
 
-  <body>
+<body>
     <div class="wrapper">
-      <div class="home-wrapper">
-        <h1 class="heading">Lift Simulations</h1>
-        <form class="home-container">
-          <div class="home-box">
-            <label for="no-of-lift">No of Lift</label>
-            <input type="number" max="10" minlength="0" class="lift-count" />
-          </div>
-          <div class="home-box">
-            <label for="no-of-floor">No of Floor</label>
-            <input type="number" max="50" minlength="0" class="floor-count" />
-          </div>
-          <div class="home-box">
-            <button class="start-btn">start-btn</button>
-          </div>
-        </form>
-      </div>
-      <div class="simulations-wrapper hide">
-        <h2>game</h2>
-        <button class="show">ShowDta</button>
+        <div class="home-wrapper hide">
+            <h1 class="heading">Lift Simulations</h1>
+            <form class="home-container">
+                <div class="home-box">
+                    <label for="no-of-lift">No of Lift</label>
+                    <input type="number" max="10" minlength="0" class="lift-count" />
+                </div>
+                <div class="home-box">
+                    <label for="no-of-floor">No of Floor</label>
+                    <input type="number" max="50" minlength="0" class="floor-count" />
+                </div>
+                <div class="home-box">
+                    <button class="start-btn">start-btn</button>
+                </div>
+            </form>
+        </div>
+        <div class="simulations-wrapper">
+            <div>
+                <div class="floor-details">
+                    <h2>Floor 1</h2>
+                    <div class="lift-btn-container">
+                        <button class="lift-btn"> ⬆ </button>
+                        <button class="lift-btn"> ⬇</button>
+                    </div>
+                </div>
+                <div class="lift-details">
 
-        <button class="back-btn">Back</button>
-      </div>
+                </div>
+            </div>
+        </div>
     </div>
     <script src="./js/main.js"></script>
-  </body>
+</body>
+
 </html>

@@ -22,10 +22,19 @@ floorCount.addEventListener("change", (e) => {
   homeData.floorCount = e.target.value;
 });
 
+const createLayoutOfFloor = (lift, floor) => {
+  simulationsWrapper.innerHTML = "";
+  const floorContainer = document.createElement("div");
+  const liftContainer = document.createElement("div");
+  const liftBtnContainer = document.createElement("div");
+  const liftUpBtn = document.createElement("button");
+  const liftDownBtn = document.createElement("button");
+};
+
 startBtn.addEventListener("click", (e) => {
   e.preventDefault();
   console.log(homeData);
-  if (homeData.floorCount <= 0 ||  homeData.floorCount > 50) {
+  if (homeData.floorCount <= 0 || homeData.floorCount > 50) {
     alert("please fill valid floor");
     return;
   } else if (homeData.liftCount <= 0 || homeData.liftCount > 10) {
