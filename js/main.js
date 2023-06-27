@@ -7,12 +7,17 @@ const simulationsWrapper = document.querySelector(".simulations-wrapper");
 const liftCount = document.querySelector(".lift-count");
 const floorCount = document.querySelector(".floor-count");
 
+const homeData = {
+  liftCount: 0,
+  floorCount: 0,
+};
+
 liftCount.addEventListener("change", (e) => {
-  console.log(e.target.value, "liftCount");
+  homeData.liftCount = e.target.value;
 });
 
 floorCount.addEventListener("change", (e) => {
-  console.log(e.target.value, "floorCount");
+  homeData.floorCount = e.target.value;
 });
 
 startBtn.addEventListener("click", () => {
