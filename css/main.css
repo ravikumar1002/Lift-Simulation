@@ -62,7 +62,6 @@ body {
 .floor-lift-container {
     display: flex;
     width: 100vw;
-    gap: 2rem;
     flex-direction: column;
 }
 
@@ -86,7 +85,7 @@ body {
 .floor-details {
     display: flex;
     gap: 2rem;
-    padding: 1rem 2rem;
+    padding: 0rem 2rem;
     border-top: 1px solid black;
     border-bottom: 1px solid black;
     height: 8rem;
@@ -103,11 +102,12 @@ body {
     height: 100%;
     display: flex;
     align-items: center;
+    border: 1px solid black;
 }
 
 .lift-layout>div {
     width: 50%;
-    height: 90%;
+    height: 100%;
 }
 
 .lift-layout>div:first-child {

@@ -11,6 +11,8 @@ const homeData = {
   floorCount: 0,
 };
 
+const quene = [];
+
 liftCount.addEventListener("keyup", (e) => {
   homeData.liftCount = e.target.value;
 });
@@ -26,11 +28,18 @@ const createElementAndAddAttr = (elementTag, className, id) => {
   return element;
 };
 
-const createLiftforFloor = (totalLift) => {
-  const floorDetails = document.querySelector("#ground-floor");
+const moveLift = () => {};
+
+const createLift = (totalLift) => {
+  const floorDetails = document.querySelector("#floor-0");
   const liftDetails = createElementAndAddAttr("div", "lift-details");
+
   for (let i = 0; i <= totalLift; i++) {
-    const liftLayout = createElementAndAddAttr("div", "lift-layout");
+    const liftLayout = createElementAndAddAttr(
+      "div",
+      "lift-layout",
+      `lift-num-${i}`
+    );
     liftLayout.innerHTML = `<div></div><div></div>`;
     liftDetails.append(liftLayout);
   }
@@ -51,7 +60,7 @@ const createLayoutOfFloor = (floor, lift) => {
       const floorDetailsDummy = createElementAndAddAttr(
         "div",
         "floor-details",
-        "ground-floor"
+        `floor-${i}`
       );
       floorDetailsDummy.innerHTML = `<div><h2>Ground Floor</h2> <div class="lift-btn-container"> <button class="lift-btn"> ⬆ </button></div>`;
       floorDetails = floorDetailsDummy;
@@ -59,19 +68,23 @@ const createLayoutOfFloor = (floor, lift) => {
       const floorDetailsDummy = createElementAndAddAttr(
         "div",
         "floor-details",
-        "last-floor"
+        `floor-${i}`
       );
       floorDetailsDummy.innerHTML = `<div><h2>Floor ${i}</h2> <div class="lift-btn-container"> <button class="lift-btn"> ⬇</button></div></div>`;
       floorDetails = floorDetailsDummy;
     } else {
-      const floorDetailsDummy = createElementAndAddAttr("div", "floor-details");
+      const floorDetailsDummy = createElementAndAddAttr(
+        "div",
+        "floor-details",
+        `floor-${i}`
+      );
       floorDetailsDummy.innerHTML = `<div><h2>Floor ${i}</h2> <div class="lift-btn-container"> <button class="lift-btn"> ⬆ </button> <button class="lift-btn"> ⬇</button></div></div>`;
       floorDetails = floorDetailsDummy;
     }
     simulationsWrapper.append(floorLiftContainer);
     floorLiftContainer.append(floorDetails);
   }
-  createLiftforFloor(lift);
+  createLift(lift);
 };
 
 startBtn.addEventListener("click", (e) => {
