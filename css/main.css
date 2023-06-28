@@ -63,12 +63,14 @@ body {
   display: flex;
   width: 100vw;
   gap: 2rem;
+  flex-direction: column;
 }
 
 .lift-btn {
   padding: 0.5rem 1rem;
   border-radius: 5px;
   border: 1px solid transparent;
+  font-size: 1.5rem;
 }
 
 .lift-btn:hover {
@@ -83,7 +85,6 @@ body {
 
 .floor-details {
   display: flex;
-  flex-direction: column;
   gap: 2rem;
   padding: 1rem 2rem;
   border-top: 1px solid black;

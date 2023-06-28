@@ -26,31 +26,52 @@ const createElementAndAddAttr = (elementTag, className, id) => {
   return element;
 };
 
-const createLiftforFloor = (totalLift, liftDetails) => {
-  console.log(totalLift, liftDetails);
+const createLiftforFloor = (totalLift) => {
+  const floorDetails = document.querySelector("#ground-floor");
+  const liftDetails = createElementAndAddAttr("div", "lift-details");
   for (let i = 0; i <= totalLift; i++) {
     const liftLayout = createElementAndAddAttr("div", "lift-layout");
     liftLayout.innerHTML = `<div></div><div></div>`;
     liftDetails.append(liftLayout);
   }
+  floorDetails.append(liftDetails);
 };
 
 const createLayoutOfFloor = (floor, lift) => {
-  simulationsWrapper.innerHTML = "";
+  simulationsWrapper.innerText = "";
   const floorLiftContainer = createElementAndAddAttr(
     "div",
     "floor-lift-container"
   );
-  const floorDetails = createElementAndAddAttr("div", "floor-details");
-  const liftBtnContainer = createElementAndAddAttr("div", "lift-btn-container");
   const liftDetails = createElementAndAddAttr("div", "lift-details");
+  let floorDetails = "";
 
-  for (let i = 0; i <= floor; i++) {
-    floorDetails.innerHTML = `<h2>Floor 1</h2> <div class="lift-btn-container"> <button class="lift-btn"> ⬆ </button> <button class="lift-btn"> ⬇</button></div>`;
+  for (let i = floor; i >= 0; i--) {
+    if (i === 0) {
+      const floorDetailsDummy = createElementAndAddAttr(
+        "div",
+        "floor-details",
+        "ground-floor"
+      );
+      floorDetailsDummy.innerHTML = `<div><h2>Ground Floor</h2> <div class="lift-btn-container"> <button class="lift-btn"> ⬆ </button></div>`;
+      floorDetails = floorDetailsDummy;
+    } else if (i === floor) {
+      const floorDetailsDummy = createElementAndAddAttr(
+        "div",
+        "floor-details",
+        "last-floor"
+      );
+      floorDetailsDummy.innerHTML = `<div><h2>Floor ${i}</h2> <div class="lift-btn-container"> <button class="lift-btn"> ⬇</button></div></div>`;
+      floorDetails = floorDetailsDummy;
+    } else {
+      const floorDetailsDummy = createElementAndAddAttr("div", "floor-details");
+      floorDetailsDummy.innerHTML = `<div><h2>Floor ${i}</h2> <div class="lift-btn-container"> <button class="lift-btn"> ⬆ </button> <button class="lift-btn"> ⬇</button></div></div>`;
+      floorDetails = floorDetailsDummy;
+    }
     simulationsWrapper.append(floorLiftContainer);
-    floorLiftContainer.append(floorDetails, liftDetails);
+    floorLiftContainer.append(floorDetails);
   }
-  createLiftforFloor(lift, liftDetails);
+  createLiftforFloor(lift);
 };
 
 startBtn.addEventListener("click", (e) => {
@@ -63,17 +84,8 @@ startBtn.addEventListener("click", (e) => {
     alert("please fill valid lift");
     return;
   }
-  console.log("A");
-  homeWrapper.classList.add("hide");
-  simulationsWrapper.classList.remove("hide");
+  //   console.log("A");
+  //   homeWrapper.classList.add("hide");
+  //   simulationsWrapper.classList.remove("hide");
   createLayoutOfFloor(homeData.floorCount, homeData.liftCount);
-});
-
-backBtn.addEventListener("click", () => {
-  simulationsWrapper.classList.add("hide");
-  homeWrapper.classList.remove("hide");
-});
-
-show.addEventListener("click", () => {
-  console.log(homeData);
 });
