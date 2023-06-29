@@ -11,7 +11,7 @@ const homeData = {
   floorCount: 0,
 };
 
-const quene = [];
+const queue = [];
 
 liftCount.addEventListener("keyup", (e) => {
   homeData.liftCount = e.target.value;
@@ -28,13 +28,21 @@ const createElementAndAddAttr = (elementTag, className, id) => {
   return element;
 };
 
-const moveLift = () => {};
+const callLift = (i, floor, liftPosition, liftStatus) => {
+  const btn = document.querySelectorAll(`button[data-floor="${i}"]`);
+  btn.forEach((btn, index) => {
+    btn.addEventListener("click", () => {
+      console.log(index, floor, i, liftPosition, liftStatus, btn);
+      
+    });
+  });
+};
 
 const createLift = (totalLift) => {
   const floorDetails = document.querySelector("#floor-0");
   const liftDetails = createElementAndAddAttr("div", "lift-details");
 
-  for (let i = 0; i <= totalLift; i++) {
+  for (let i = 0; i < totalLift; i++) {
     const liftLayout = createElementAndAddAttr(
       "div",
       "lift-layout",
@@ -55,22 +63,25 @@ const createLayoutOfFloor = (floor, lift) => {
   const liftDetails = createElementAndAddAttr("div", "lift-details");
   let floorDetails = "";
 
-  for (let i = floor; i >= 0; i--) {
+  let liftPosition = Array(+lift).fill(0);
+  let liftStatus = Array(+lift).fill(false);
+
+  for (let i = floor - 1; i >= 0; i--) {
     if (i === 0) {
       const floorDetailsDummy = createElementAndAddAttr(
         "div",
         "floor-details",
         `floor-${i}`
       );
-      floorDetailsDummy.innerHTML = `<div><h2>Ground Floor</h2> <div class="lift-btn-container"> <button class="lift-btn"> ⬆ </button></div>`;
+      floorDetailsDummy.innerHTML = `<div><h2>Ground Floor</h2> <div class="lift-btn-container"> <button class="lift-btn up-btn"  data-floor=${i}> ⬆ </button></div>`;
       floorDetails = floorDetailsDummy;
-    } else if (i === floor) {
+    } else if (i === floor - 1) {
       const floorDetailsDummy = createElementAndAddAttr(
         "div",
         "floor-details",
         `floor-${i}`
       );
-      floorDetailsDummy.innerHTML = `<div><h2>Floor ${i}</h2> <div class="lift-btn-container"> <button class="lift-btn"> ⬇</button></div></div>`;
+      floorDetailsDummy.innerHTML = `<div><h2>Floor ${i}</h2> <div class="lift-btn-container"> <button class="lift-btn down-btn" data-floor=${i}> ⬇</button></div></div>`;
       floorDetails = floorDetailsDummy;
     } else {
       const floorDetailsDummy = createElementAndAddAttr(
@@ -78,11 +89,12 @@ const createLayoutOfFloor = (floor, lift) => {
         "floor-details",
         `floor-${i}`
       );
-      floorDetailsDummy.innerHTML = `<div><h2>Floor ${i}</h2> <div class="lift-btn-container"> <button class="lift-btn"> ⬆ </button> <button class="lift-btn"> ⬇</button></div></div>`;
+      floorDetailsDummy.innerHTML = `<div><h2>Floor ${i}</h2> <div class="lift-btn-container"> <button class="lift-btn up-btn"  data-floor=${i}> ⬆ </button> <button class="lift-btn down-btn"  data-floor=${i}> ⬇</button></div></div>`;
       floorDetails = floorDetailsDummy;
     }
     simulationsWrapper.append(floorLiftContainer);
     floorLiftContainer.append(floorDetails);
+    callLift(i, floor, liftPosition, liftStatus);
   }
   createLift(lift);
 };
