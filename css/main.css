@@ -1,115 +1,119 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700;800;900&display=swap");
 
 * {
-  margin: 0;
-  box-sizing: border-box;
-  padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    padding: 0;
 }
 
 body {
-  font-family: "Inter", sans-serif;
+    font-family: "Inter", sans-serif;
 }
 
 .wrapper {
-  min-height: 100vh;
+    min-height: 100vh;
 }
 
 .home-wrapper {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 10rem;
-  padding: 4rem 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10rem;
+    padding: 4rem 2rem;
 }
 
 .home-container {
-  width: 18rem;
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
+    width: 18rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
 }
 
 .home-box {
-  width: 100%;
-  display: flex;
-  gap: 3rem;
-  justify-content: center;
+    width: 100%;
+    display: flex;
+    gap: 3rem;
+    justify-content: center;
 }
 
-.home-box > * {
-  width: 50%;
-  display: inline-block;
-  line-height: 2rem;
+.home-box>* {
+    width: 50%;
+    display: inline-block;
+    line-height: 2rem;
 }
 
 .home-box input {
-  padding: 0rem 0.5rem;
+    padding: 0rem 0.5rem;
 }
 
 .home-box input::-webkit-outer-spin-button,
 .home-box input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
+    -webkit-appearance: none;
+    margin: 0;
 }
 
 .hide {
-  display: none;
+    display: none;
 }
 
 /* ---------------simulations css */
 
 .floor-lift-container {
-  display: flex;
-  width: 100vw;
-  gap: 2rem;
+    display: flex;
+    width: 100vw;
+    gap: 2rem;
+    flex-direction: column;
 }
 
 .lift-btn {
-  padding: 0.5rem 1rem;
-  border-radius: 5px;
-  border: 1px solid transparent;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    border: 1px solid transparent;
+    font-size: 1rem;
 }
 
 .lift-btn:hover {
-  border: 1px solid rgb(188, 188, 188);
-  cursor: pointer;
+    border: 1px solid rgb(188, 188, 188);
+    cursor: pointer;
 }
 
 .lift-btn-container {
-  display: flex;
-  gap: 1rem;
+    display: flex;
+    gap: 1rem;
 }
 
 .floor-details {
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
-  padding: 1rem 2rem;
-  border-top: 1px solid black;
-  border-bottom: 1px solid black;
-  height: 10rem;
+    display: flex;
+    gap: 2rem;
+    padding: 1rem 2rem;
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+    height: 8rem;
 }
+
 .lift-details {
-  flex-grow: 1;
+    flex-grow: 1;
+    display: flex;
+    gap: 1rem;
 }
 
 .lift-layout {
-  width: 10rem;
-  height: 100%;
-  display: flex;
-  align-items: center;
+    width: 5rem;
+    height: 100%;
+    display: flex;
+    align-items: center;
 }
 
-.lift-layout > div {
-  width: 50%;
-  height: 90%;
+.lift-layout>div {
+    width: 50%;
+    height: 90%;
 }
 
-.lift-layout> div:first-child{
+.lift-layout>div:first-child {
     background-color: aliceblue;
 }
 
-.lift-layout> div:last-child{
+.lift-layout>div:last-child {
     background-color: rgb(22, 22, 23);
 }
