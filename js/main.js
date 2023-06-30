@@ -21,10 +21,15 @@ floorCount.addEventListener("change", (e) => {
     homeData.floorCount = e.target.value;
 });
 
-const moveLift = (i, floor, liftPosition, liftStatus, findLiftStatus) => {
-    console.log(i, floor, liftPosition, liftStatus, findLiftStatus);
+const moveLift = (i, floor, liftPosition, liftStatus, emptyLift) => {
+    console.log(i, floor, liftPosition, liftStatus, emptyLift);
+    const lift = document.querySelector(`#lift-num-${emptyLift}`);
+    console.log(lift)
+    const time = `${Math.abs(floor - i) * 2}`
+    lift.style.transform = `translateY(-${i * 8}rem)`
+    lift.style.transition = `transform ${time}s ease-in-out 0s`;
 
-
+    liftPosition[emptyLift] = i
 };
 
 const createElementAndAddAttr = (elementTag, className, id) => {
@@ -49,18 +54,18 @@ const callLift = (i, floor, liftPosition, liftStatus) => {
                 }
             } else {
                 if (!queue.includes(i)) queue.push(i);
-                let timeout = setInterval(() => {
+                // let timeout = setInterval(() => {
 
-                    const findLiftEmptyIn = liftStatus.findIndex((status) => status === false);
+                //     const findLiftEmptyIn = liftStatus.findIndex((status) => status === false);
 
-                    if (findLiftEmptyIn && queue.length > 0) {
+                //     if (findLiftEmptyIn && queue.length > 0) {
 
-                        moveLift(queue[0], findLiftEmptyIn, liftPosition, liftStatus, i);
-                        queue.shift();
-                    }
-                }, 500)
-                if (queue.length === 0)
-                    clearInterval(timeout)
+                //         moveLift(queue[0], findLiftEmptyIn, liftPosition, liftStatus, i);
+                //         queue.shift();
+                //     }
+                // }, 500)
+                // if (queue.length === 0)
+                //     clearInterval(timeout)
             }
         });
     });
