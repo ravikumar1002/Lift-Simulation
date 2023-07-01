@@ -22,14 +22,40 @@ floorCount.addEventListener("change", (e) => {
 });
 
 const moveLift = (i, floor, liftPosition, liftStatus, emptyLift) => {
-    console.log(i, floor, liftPosition, liftStatus, emptyLift);
+    liftStatus[emptyLift] = true;
+
     const lift = document.querySelector(`#lift-num-${emptyLift}`);
-    console.log(lift)
-    const time = `${Math.abs(floor - i) * 2}`
-    lift.style.transform = `translateY(-${i * 8}rem)`
+    const liftDoors = document.querySelectorAll(`#lift-num-${emptyLift}>div`);
+    let floorHeight = document.querySelector('.floor-details').offsetHeight
+    console.log(floorHeight)
+    const time = `${Math.abs(floor - liftPosition[emptyLift]) * 2}`
+    lift.style.transform = `translateY(-${i * floorHeight}px)`
     lift.style.transition = `transform ${time}s ease-in-out 0s`;
 
+
+    setTimeout(() => {
+        liftDoors[0].style.transform = `translateX(-95%)`
+        liftDoors[0].style.transition = `all 2s ease-in-out 1s`;
+
+        liftDoors[1].style.transform = `translateX(95%)`
+        liftDoors[1].style.transition = `all 2s ease-in-out 1s`;
+    }, +time * 1000 + 500)
+
+    setTimeout(() => {
+        liftDoors[0].style.transform = `translateX(0%)`
+        liftDoors[0].style.transition = `all 2s ease-in-out 1s`;
+
+        liftDoors[1].style.transform = `translateX(0%)`
+        liftDoors[1].style.transition = `all 2s ease-in-out 1s`;
+
+        setTimeout(() => {
+            liftStatus[emptyLift] = false;
+        }, 2500)
+
+    }, (+time + 3.5) * 1000)
+
     liftPosition[emptyLift] = i
+
 };
 
 const createElementAndAddAttr = (elementTag, className, id) => {
@@ -43,29 +69,25 @@ const callLift = (i, floor, liftPosition, liftStatus) => {
     const btn = document.querySelectorAll(`button[data-floor="${i}"]`);
     btn.forEach((btn) => {
         btn.addEventListener("click", () => {
-            const findEmptyLiftIn = liftStatus.findIndex((status) => status === false);
             if (queue.length === 0) {
+                const findEmptyLiftIn = liftStatus.findIndex((status) => status === false);
                 if (findEmptyLiftIn + 1) {
-                    liftStatus[findEmptyLiftIn] = true;
                     moveLift(i, floor, liftPosition, liftStatus, findEmptyLiftIn);
                 } else {
-                    console.log(queue);
                     queue.push(i);
                 }
             } else {
                 if (!queue.includes(i)) queue.push(i);
-                // let timeout = setInterval(() => {
 
-                //     const findLiftEmptyIn = liftStatus.findIndex((status) => status === false);
-
-                //     if (findLiftEmptyIn && queue.length > 0) {
-
-                //         moveLift(queue[0], findLiftEmptyIn, liftPosition, liftStatus, i);
-                //         queue.shift();
-                //     }
-                // }, 500)
-                // if (queue.length === 0)
-                //     clearInterval(timeout)
+                let timeout = setInterval(() => {
+                    const findLiftEmptyIn = liftStatus.findIndex((status) => status === false);
+                    if (findLiftEmptyIn + 1 && queue.length > 0) {
+                        moveLift(queue[0], floor, liftPosition, liftStatus, findLiftEmptyIn);
+                        queue.shift();
+                    }
+                }, 500)
+                if (queue.length === 0)
+                    clearInterval(timeout)
             }
         });
     });
@@ -105,7 +127,7 @@ const createLayoutOfFloor = (floor, lift) => {
             `floor-${i}`
         );
         if (i === 0) {
-            floorDetailsDummy.innerHTML = `<div><h2>Ground Floor</h2> <div class="lift-btn-container"> <button class="lift-btn up-btn"  data-floor=${i}> ⬆ </button></div>`;
+            floorDetailsDummy.innerHTML = `<div><h2>Ground</h2> <div class="lift-btn-container"> <button class="lift-btn up-btn"  data-floor=${i}> ⬆ </button></div>`;
         } else if (i === floor - 1) {
             floorDetailsDummy.innerHTML = `<div><h2>Floor ${i}</h2> <div class="lift-btn-container"> <button class="lift-btn down-btn" data-floor=${i}> ⬇</button></div></div>`;
         } else {
@@ -120,7 +142,6 @@ const createLayoutOfFloor = (floor, lift) => {
 
 startBtn.addEventListener("click", (e) => {
     e.preventDefault();
-    console.log(homeData);
     if (homeData.floorCount <= 0 || homeData.floorCount > 50) {
         alert("please fill valid floor");
         return;
