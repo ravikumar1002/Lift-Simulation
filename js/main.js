@@ -26,9 +26,10 @@ const moveLift = (i, floor, liftPosition, liftStatus, emptyLift) => {
 
     const lift = document.querySelector(`#lift-num-${emptyLift}`);
     const liftDoors = document.querySelectorAll(`#lift-num-${emptyLift}>div`);
-
+    let floorHeight = document.querySelector('.floor-details').offsetHeight
+    console.log(floorHeight)
     const time = `${Math.abs(floor - liftPosition[emptyLift]) * 2}`
-    lift.style.transform = `translateY(-${i * 8}rem)`
+    lift.style.transform = `translateY(-${i * floorHeight}px)`
     lift.style.transition = `transform ${time}s ease-in-out 0s`;
 
 
