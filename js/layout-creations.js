@@ -7,7 +7,7 @@ const createElementAndAddAttr = (elementTag, className, id) => {
     return element;
 };
 
-const callLift = (i, floor, liftPosition, liftStatus) => {
+const callLift = (i, liftPosition, liftStatus) => {
     const btn = document.querySelectorAll(`button[data-floor="${i}"]`);
     btn.forEach((btn) => {
         btn.addEventListener("click", () => {
@@ -78,7 +78,7 @@ const createLayoutOfFloor = (floor, lift) => {
         }
         simulationsWrapper.append(floorLiftContainer);
         floorLiftContainer.append(floorDetailsDummy);
-        callLift(i, floor, liftPosition, liftStatus);
+        callLift(i, liftPosition, liftStatus);
     }
     createLift(lift);
 };
