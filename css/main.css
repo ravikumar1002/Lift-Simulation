@@ -122,11 +122,14 @@ body {
   height: 8rem;
 }
 
+#floor-0 {
+  position: relative;
+}
+
 .lift-details {
   flex-grow: 1;
   display: flex;
   gap: 1rem;
-  z-index: 3;
 }
 
 .lift-layout {
@@ -136,6 +139,8 @@ body {
   align-items: center;
   border: 1px solid black;
   overflow: hidden;
+  position: sticky;
+  z-index: -1;
 }
 
 .lift-layout > div {
