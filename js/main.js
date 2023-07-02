@@ -16,8 +16,7 @@ const homeData = {
 
 const queue = [];
 
-window.onload = (e) => {
-    console.log(e)
+window.onload = () => {
     if (screen.width < 500) {
         liftCount.setAttribute("placeholder", "Max 3")
         liftCount.setAttribute("max", "5")
@@ -252,8 +251,9 @@ startBtn.addEventListener("click", (e) => {
         simulationsWrapper.classList.remove("hide");
         topNav.classList.add("top-nav")
         topNav.classList.remove("hide")
-        console.log("e")
         createLayoutOfFloor(+homeData.floorCount, +homeData.liftCount);
+        const groundFloor = document.querySelector("#floor-0")
+        groundFloor.scrollIntoView();
     }
 });
 
@@ -271,5 +271,3 @@ backBtn.addEventListener("click", (e) => {
     homeWrapper.classList.remove("hide");
 })
 
-
-// window.scroll
