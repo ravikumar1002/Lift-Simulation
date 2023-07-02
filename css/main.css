@@ -85,6 +85,7 @@ body {
   justify-content: center;
   font-size: 1rem;
   align-items: center;
+  cursor: pointer;
 }
 
 .back-btn::before {
