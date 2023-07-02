@@ -1,5 +1,5 @@
 
-
+// ----creating element through Js and adding necessary attribute-------
 const createElementAndAddAttr = (elementTag, className, id) => {
     const element = document.createElement(elementTag);
     if (className) element.setAttribute("class", className);
@@ -7,27 +7,35 @@ const createElementAndAddAttr = (elementTag, className, id) => {
     return element;
 };
 
-const callLift = (i, floor, liftPosition, liftStatus) => {
+// ----- Call lift function for every floor button-----------
+const callLift = (i, liftPosition, liftStatus) => {
     const btn = document.querySelectorAll(`button[data-floor="${i}"]`);
+
     btn.forEach((btn) => {
         btn.addEventListener("click", () => {
+
+            // ------ if queue is empty then this block will work and inside that if lift is empty then move lift will call otherwise this will  push to queue---
             if (queue.length === 0) {
                 const findEmptyLiftIn = liftStatus.findIndex((status) => status === false);
                 if (findEmptyLiftIn + 1) {
-                    moveLift(i, floor, liftPosition, liftStatus, findEmptyLiftIn);
+                    moveLift(i, liftPosition, liftStatus, findEmptyLiftIn);
                 } else {
                     queue.push(i);
                 }
             } else {
+                // --- finding that floor in queue
                 if (!queue.includes(i)) queue.push(i);
 
+                // ----- setInterval for looping till queue will goes empty
                 let timeout = setInterval(() => {
                     const findLiftEmptyIn = liftStatus.findIndex((status) => status === false);
                     if (findLiftEmptyIn + 1 && queue.length > 0) {
-                        moveLift(queue[0], floor, liftPosition, liftStatus, findLiftEmptyIn);
+                        moveLift(queue[0], liftPosition, liftStatus, findLiftEmptyIn);
                         queue.shift();
                     }
                 }, 500)
+
+                // ------- Removing Interval
                 if (queue.length === 0)
                     clearInterval(timeout)
             }
@@ -35,6 +43,8 @@ const callLift = (i, floor, liftPosition, liftStatus) => {
     });
 };
 
+
+// ----- Creating Lift structure layout ---------
 const createLift = (totalLift) => {
     const floorDetails = document.querySelector("#floor-0");
     const liftDetails = createElementAndAddAttr("div", "lift-details");
@@ -52,7 +62,7 @@ const createLift = (totalLift) => {
 };
 
 
-
+// ----- Creating Floor structure layout ---------
 const createLayoutOfFloor = (floor, lift) => {
     simulationsWrapper.innerText = "";
     const floorLiftContainer = createElementAndAddAttr(
@@ -78,7 +88,7 @@ const createLayoutOfFloor = (floor, lift) => {
         }
         simulationsWrapper.append(floorLiftContainer);
         floorLiftContainer.append(floorDetailsDummy);
-        callLift(i, floor, liftPosition, liftStatus);
+        callLift(i, liftPosition, liftStatus);
     }
     createLift(lift);
 };

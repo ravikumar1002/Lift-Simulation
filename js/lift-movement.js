@@ -1,38 +1,42 @@
+// ---------------- Lift move function--------
 
-const moveLift = (i, floor, liftPosition, liftStatus, emptyLift) => {
+const moveLift = (i, liftPosition, liftStatus, emptyLift) => {
     liftStatus[emptyLift] = true;
 
     const lift = document.querySelector(`#lift-num-${emptyLift}`);
     const liftDoors = document.querySelectorAll(`#lift-num-${emptyLift}>div`);
-    let floorHeight = document.querySelector('.floor-details').offsetHeight
+    let floorHeight = document.querySelector(".floor-details").offsetHeight;
 
-    const time = `${Math.abs(i - liftPosition[emptyLift]) * 2}`
+    // ---------Finding difference between call lift floor and empty lift floor ------------
+    const time = `${Math.abs(i - liftPosition[emptyLift]) * 2}`;
 
-    lift.style.transform = `translateY(-${i * floorHeight}px)`
+    // ----- Moving  lift through css properties ---------
+    lift.style.transform = `translateY(-${i * floorHeight}px)`;
     lift.style.transition = `transform ${time}s ease-in-out 0s`;
 
-
+    // ----- Opening Doors -------
     setTimeout(() => {
-        liftDoors[0].style.transform = `translateX(-95%)`
+        liftDoors[0].style.transform = `translateX(-95%)`;
         liftDoors[0].style.transition = `all 2s ease-in-out 1s`;
 
-        liftDoors[1].style.transform = `translateX(95%)`
+        liftDoors[1].style.transform = `translateX(95%)`;
         liftDoors[1].style.transition = `all 2s ease-in-out 1s`;
-    }, +time * 1000 + 500)
+    }, +time * 1000 + 500);
 
+    // ------closing Doors ---------
     setTimeout(() => {
-        liftDoors[0].style.transform = `translateX(0%)`
+        liftDoors[0].style.transform = `translateX(0%)`;
         liftDoors[0].style.transition = `all 2s ease-in-out 1s`;
 
-        liftDoors[1].style.transform = `translateX(0%)`
+        liftDoors[1].style.transform = `translateX(0%)`;
         liftDoors[1].style.transition = `all 2s ease-in-out 1s`;
 
+        // ---- Changing Lift status, ture to false ----------
         setTimeout(() => {
             liftStatus[emptyLift] = false;
-        }, 2500)
+        }, 2500);
+    }, (+time + 3.5) * 1000);
 
-    }, (+time + 3.5) * 1000)
-
-    liftPosition[emptyLift] = i
-
+    // ------------ Set empty lift position floor ---------- 
+    liftPosition[emptyLift] = i;
 };

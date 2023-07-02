@@ -16,39 +16,6 @@ const homeData = {
 
 const queue = [];
 
-window.onload = () => {
-    if (screen.width < 500) {
-        liftCount.setAttribute("placeholder", "Max 3")
-        liftCount.setAttribute("max", "5")
-
-        floorCount.setAttribute("placeholder", "Max 8")
-        floorCount.setAttribute("max", "8")
-
-    } else if (screen.width < 800 && screen.width > 500) {
-        liftCount.setAttribute("placeholder", "Max 5")
-        liftCount.setAttribute("max", "5")
-
-        floorCount.setAttribute("placeholder", "Max 12")
-        floorCount.setAttribute("max", "12")
-
-    } else if (screen.width < 1200 && screen.width > 800) {
-        liftCount.setAttribute("placeholder", "Max 7")
-        liftCount.setAttribute("max", "7")
-
-        floorCount.setAttribute("placeholder", "Max 18")
-        floorCount.setAttribute("max", "18")
-
-    } else if (screen.width > 1200) {
-        liftCount.setAttribute("placeholder", "Max 10")
-        liftCount.setAttribute("max", "10")
-
-        floorCount.setAttribute("placeholder", "Max 25")
-        floorCount.setAttribute("max", "25")
-
-    }
-}
-
-
 liftCount.addEventListener("keyup", (e) => {
     homeData.liftCount = e.target.value;
 });
@@ -60,7 +27,7 @@ floorCount.addEventListener("keyup", (e) => {
 
 startBtn.addEventListener("click", (e) => {
     e.preventDefault();
-
+    // ---- If block for checking inputs value for lift and floor
     if (checkInputLliftValidation(+homeData.liftCount, +homeData.floorCount) && checkInputLFloorValidation(+homeData.floorCount)) {
         homeWrapper.classList.add("hide");
         simulationsWrapper.classList.remove("hide");
@@ -74,6 +41,7 @@ startBtn.addEventListener("click", (e) => {
 
 
 backBtn.addEventListener("click", (e) => {
+    // ----- resetting all  value-----
     e.preventDefault()
     homeData.liftCount = 0
     homeData.floorCount = 0
