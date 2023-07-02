@@ -1,5 +1,5 @@
 
-const moveLift = (i, floor, liftPosition, liftStatus, emptyLift) => {
+const moveLift = (i, liftPosition, liftStatus, emptyLift) => {
     liftStatus[emptyLift] = true;
 
     const lift = document.querySelector(`#lift-num-${emptyLift}`);

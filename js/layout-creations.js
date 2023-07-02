@@ -14,7 +14,7 @@ const callLift = (i, floor, liftPosition, liftStatus) => {
             if (queue.length === 0) {
                 const findEmptyLiftIn = liftStatus.findIndex((status) => status === false);
                 if (findEmptyLiftIn + 1) {
-                    moveLift(i, floor, liftPosition, liftStatus, findEmptyLiftIn);
+                    moveLift(i, liftPosition, liftStatus, findEmptyLiftIn);
                 } else {
                     queue.push(i);
                 }
@@ -24,7 +24,7 @@ const callLift = (i, floor, liftPosition, liftStatus) => {
                 let timeout = setInterval(() => {
                     const findLiftEmptyIn = liftStatus.findIndex((status) => status === false);
                     if (findLiftEmptyIn + 1 && queue.length > 0) {
-                        moveLift(queue[0], floor, liftPosition, liftStatus, findLiftEmptyIn);
+                        moveLift(queue[0], liftPosition, liftStatus, findLiftEmptyIn);
                         queue.shift();
                     }
                 }, 500)
