@@ -1,10 +1,13 @@
+
 const startBtn = document.querySelector(".start-btn");
 const backBtn = document.querySelector(".back-btn");
 const homeWrapper = document.querySelector(".home-wrapper");
 const simulationsWrapper = document.querySelector(".simulations-wrapper");
+const topNav = document.querySelector("#back-nav")
 const liftCount = document.querySelector(".lift-count");
 const floorCount = document.querySelector(".floor-count");
 const show = document.querySelector(".show");
+
 
 const homeData = {
     liftCount: 0,
@@ -17,7 +20,7 @@ liftCount.addEventListener("keyup", (e) => {
     homeData.liftCount = e.target.value;
 });
 
-floorCount.addEventListener("change", (e) => {
+floorCount.addEventListener("keyup", (e) => {
     homeData.floorCount = e.target.value;
 });
 
@@ -27,8 +30,9 @@ const moveLift = (i, floor, liftPosition, liftStatus, emptyLift) => {
     const lift = document.querySelector(`#lift-num-${emptyLift}`);
     const liftDoors = document.querySelectorAll(`#lift-num-${emptyLift}>div`);
     let floorHeight = document.querySelector('.floor-details').offsetHeight
-    console.log(floorHeight)
+
     const time = `${Math.abs(floor - liftPosition[emptyLift]) * 2}`
+
     lift.style.transform = `translateY(-${i * floorHeight}px)`
     lift.style.transition = `transform ${time}s ease-in-out 0s`;
 
@@ -115,10 +119,9 @@ const createLayoutOfFloor = (floor, lift) => {
         "div",
         "floor-lift-container"
     );
-    const liftDetails = createElementAndAddAttr("div", "lift-details");
 
-    let liftPosition = Array(+lift).fill(0);
-    let liftStatus = Array(+lift).fill(false);
+    let liftPosition = Array(lift).fill(0);
+    let liftStatus = Array(lift).fill(false);
 
     for (let i = floor - 1; i >= 0; i--) {
         const floorDetailsDummy = createElementAndAddAttr(
@@ -140,17 +143,97 @@ const createLayoutOfFloor = (floor, lift) => {
     createLift(lift);
 };
 
+const checkInputLliftValidation = (value, floorValue) => {
+    if (value <= 0) {
+        alert("Value can't be zero or nagative")
+        return false
+    }
+
+    if (floorValue < value) {
+        alert("Lift can't be more than floor")
+        return false
+    }
+
+    if (screen.width < 500) {
+        if (value > 3) {
+            alert("Lift can,t be more than 3")
+            return false
+        }
+    } else if (screen.width < 800 && screen.width > 500) {
+        if (value > 5) {
+            alert("Lift can,t be more than 5")
+            return false
+        }
+    } else if (screen.width < 1200 && screen.width > 800) {
+        if (value > 7) {
+            alert("Lift can,t be more than 7")
+            return false
+        }
+    } else if (screen.width > 1200) {
+        if (value > 10) {
+            alert("Lift can,t be more than 10")
+            return false
+        }
+    }
+    return true
+}
+
+const checkInputLFloorValidation = (value) => {
+
+    if (value <= 0) {
+        alert("Value can't be zero or nagative")
+        return false
+    }
+
+    if (screen.width < 500) {
+        if (value > 8) {
+            alert("Floor can't be more than 8")
+            return false
+        }
+    } else if (screen.width < 800 && screen.width > 500) {
+        if (value > 12) {
+            alert("Floor can't be more than 12")
+            return false
+        }
+    } else if (screen.width < 1200 && screen.width > 800) {
+        if (value > 18) {
+            alert("Floor can't be more than 18")
+            return false
+        }
+    } else if (screen.width > 1200) {
+        if (value > 25) {
+            alert("Floor can't be more than 25")
+            return false
+        }
+    }
+
+    return true
+}
+
+
 startBtn.addEventListener("click", (e) => {
     e.preventDefault();
-    if (homeData.floorCount <= 0 || homeData.floorCount > 50) {
-        alert("please fill valid floor");
-        return;
-    } else if (homeData.liftCount <= 0 || homeData.liftCount > 10) {
-        alert("please fill valid lift");
-        return;
+
+    if (checkInputLliftValidation(+homeData.liftCount, +homeData.floorCount) && checkInputLFloorValidation(+homeData.floorCount)) {
+        homeWrapper.classList.add("hide");
+        simulationsWrapper.classList.remove("hide");
+        topNav.classList.add("top-nav")
+        topNav.classList.remove("hide")
+        console.log("e")
+        createLayoutOfFloor(+homeData.floorCount, +homeData.liftCount);
     }
-    //   console.log("A");
-    //   homeWrapper.classList.add("hide");
-    //   simulationsWrapper.classList.remove("hide");
-    createLayoutOfFloor(homeData.floorCount, homeData.liftCount);
 });
+
+
+backBtn.addEventListener("click", (e) => {
+    e.preventDefault()
+    homeData.liftCount = 0
+    homeData.floorCount = 0
+    queue.length = 0
+    liftCount.value = ""
+    floorCount.value = ""
+    topNav.classList.remove("top-nav")
+    topNav.classList.add("hide")
+    simulationsWrapper.classList.add("hide");
+    homeWrapper.classList.remove("hide");
+})

@@ -14,23 +14,27 @@
             <h1 class="heading">Lift Simulations</h1>
             <form class="home-container">
                 <div class="home-box">
-                    <label for="no-of-lift">No of Lift</label>
-                    <input type="number" max="10" minlength="0" class="lift-count" />
+                    <label for="lift-count-input" class="home-text">No of Lift</label>
+                    <input type="number" max="10" minlength="0" class="lift-count" id="lift-count-input" />
                 </div>
                 <div class="home-box">
-                    <label for="no-of-floor">No of Floor</label>
-                    <input type="number" max="50" minlength="0" class="floor-count" />
+                    <label for="floor-count-input" class="home-text">No of Floor</label>
+                    <input type="number" max="50" minlength="0" class="floor-count" id="floor-count-input" />
                 </div>
                 <div class="home-box">
                     <button class="start-btn">Start</button>
                 </div>
             </form>
         </div>
-        <div class="simulations-wrapper">
+        <div class="hide" id="back-nav">
+            <button class="back-btn">Back</button>
+        </div>
+        <div class="simulations-wrapper hide">
 
         </div>
     </div>
     <script src="./js/main.js"></script>
+    <!-- <script src="./js/validation.js"></script> -->
 </body>
 
 </html>
