@@ -81,6 +81,15 @@ body {
   border: none;
   border-radius: 5px;
   font-weight: 600;
+  display: flex;
+  justify-content: center;
+  font-size: 1rem;
+  align-items: center;
+}
+
+.back-btn::before {
+  content: url("https://img.icons8.com/material-outlined/24/back--v1.png");
+  height: 1.6rem;
 }
 
 .top-nav {
