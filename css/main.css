@@ -12,6 +12,10 @@ body {
   background: linear-gradient(45deg, #3d3d3d, transparent);
 }
 
+:root {
+  --secondary-bg: #3a4f4f;
+}
+
 .wrapper {
   min-height: 100vh;
   position: relative;
@@ -72,16 +76,17 @@ body {
 /* ---------------Common css-- */
 
 .back-btn {
-  padding: 1rem 2rem;
+  padding: 0.5rem 1rem;
   border: none;
   border-radius: 5px;
+  font-weight: 600;
 }
 
 .top-nav {
   position: sticky;
   width: 100%;
   display: block;
-  background-color: aqua;
+  background-color: var(--secondary-bg);
   padding: 0.5rem 1rem;
   top: 0;
   left: 0;
@@ -99,7 +104,7 @@ body {
 .lift-btn {
   padding: 0.5rem 1rem;
   border-radius: 5px;
-  border: 1px solid transparent;
+  border: 1px solid var(--secondary-bg);
   font-size: 1rem;
 }
 
@@ -141,6 +146,8 @@ body {
   overflow: hidden;
   position: sticky;
   z-index: -1;
+  background-image: url("../assets/people-inside-lift.png");
+  background-size: cover;
 }
 
 .lift-layout > div {

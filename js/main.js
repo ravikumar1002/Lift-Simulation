@@ -30,7 +30,9 @@ const moveLift = (i, floor, liftPosition, liftStatus, emptyLift) => {
     const lift = document.querySelector(`#lift-num-${emptyLift}`);
     const liftDoors = document.querySelectorAll(`#lift-num-${emptyLift}>div`);
     let floorHeight = document.querySelector('.floor-details').offsetHeight
+    
     const time = `${Math.abs(floor - liftPosition[emptyLift]) * 2}`
+
     lift.style.transform = `translateY(-${i * floorHeight}px)`
     lift.style.transition = `transform ${time}s ease-in-out 0s`;
 
@@ -207,7 +209,6 @@ const checkInputLFloorValidation = (value) => {
 
     return true
 }
-
 
 
 startBtn.addEventListener("click", (e) => {
