@@ -1,5 +1,7 @@
 
 
+
+// ----------- setting input's attribute when screen load according to screen size ------------
 window.onload = () => {
     if (screen.width < 500) {
         liftCount.setAttribute("placeholder", "Max 3")
@@ -33,7 +35,7 @@ window.onload = () => {
 }
 
 
-
+// ----------- Input floor validations ---------
 const checkInputLFloorValidation = (value) => {
 
     if (value <= 0) {
@@ -66,6 +68,7 @@ const checkInputLFloorValidation = (value) => {
     return true
 }
 
+// ----------- Input Lift validations ---------
 
 const checkInputLliftValidation = (value, floorValue) => {
     if (value <= 0) {
