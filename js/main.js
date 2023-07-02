@@ -3,7 +3,7 @@ const startBtn = document.querySelector(".start-btn");
 const backBtn = document.querySelector(".back-btn");
 const homeWrapper = document.querySelector(".home-wrapper");
 const simulationsWrapper = document.querySelector(".simulations-wrapper");
-const topNav = document.querySelector(".top-nav")
+const topNav = document.querySelector("#back-nav")
 const liftCount = document.querySelector(".lift-count");
 const floorCount = document.querySelector(".floor-count");
 const show = document.querySelector(".show");
@@ -30,7 +30,7 @@ const moveLift = (i, floor, liftPosition, liftStatus, emptyLift) => {
     const lift = document.querySelector(`#lift-num-${emptyLift}`);
     const liftDoors = document.querySelectorAll(`#lift-num-${emptyLift}>div`);
     let floorHeight = document.querySelector('.floor-details').offsetHeight
-    
+
     const time = `${Math.abs(floor - liftPosition[emptyLift]) * 2}`
 
     lift.style.transform = `translateY(-${i * floorHeight}px)`
@@ -216,8 +216,10 @@ startBtn.addEventListener("click", (e) => {
 
     if (checkInputLliftValidation(+homeData.liftCount, +homeData.floorCount) && checkInputLFloorValidation(+homeData.floorCount)) {
         homeWrapper.classList.add("hide");
-        topNav.classList.remove("hide")
         simulationsWrapper.classList.remove("hide");
+        topNav.classList.add("top-nav")
+        topNav.classList.remove("hide")
+        console.log("e")
         createLayoutOfFloor(+homeData.floorCount, +homeData.liftCount);
     }
 });
@@ -230,8 +232,8 @@ backBtn.addEventListener("click", (e) => {
     queue.length = 0
     liftCount.value = ""
     floorCount.value = ""
+    topNav.classList.remove("top-nav")
     topNav.classList.add("hide")
     simulationsWrapper.classList.add("hide");
     homeWrapper.classList.remove("hide");
-
 })
