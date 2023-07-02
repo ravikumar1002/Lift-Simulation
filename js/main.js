@@ -3,6 +3,7 @@ const startBtn = document.querySelector(".start-btn");
 const backBtn = document.querySelector(".back-btn");
 const homeWrapper = document.querySelector(".home-wrapper");
 const simulationsWrapper = document.querySelector(".simulations-wrapper");
+const topNav = document.querySelector(".top-nav")
 const liftCount = document.querySelector(".lift-count");
 const floorCount = document.querySelector(".floor-count");
 const show = document.querySelector(".show");
@@ -29,7 +30,6 @@ const moveLift = (i, floor, liftPosition, liftStatus, emptyLift) => {
     const lift = document.querySelector(`#lift-num-${emptyLift}`);
     const liftDoors = document.querySelectorAll(`#lift-num-${emptyLift}>div`);
     let floorHeight = document.querySelector('.floor-details').offsetHeight
-    console.log(floorHeight)
     const time = `${Math.abs(floor - liftPosition[emptyLift]) * 2}`
     lift.style.transform = `translateY(-${i * floorHeight}px)`
     lift.style.transition = `transform ${time}s ease-in-out 0s`;
@@ -141,10 +141,7 @@ const createLayoutOfFloor = (floor, lift) => {
     createLift(lift);
 };
 
-
-
 const checkInputLliftValidation = (value, floorValue) => {
-    console.log(floorValue < value, value, floorValue)
     if (value <= 0) {
         alert("Value can't be zero or nagative")
         return false
@@ -218,7 +215,22 @@ startBtn.addEventListener("click", (e) => {
 
     if (checkInputLliftValidation(+homeData.liftCount, +homeData.floorCount) && checkInputLFloorValidation(+homeData.floorCount)) {
         homeWrapper.classList.add("hide");
+        topNav.classList.remove("hide")
         simulationsWrapper.classList.remove("hide");
         createLayoutOfFloor(+homeData.floorCount, +homeData.liftCount);
     }
 });
+
+
+backBtn.addEventListener("click", (e) => {
+    e.preventDefault()
+    homeData.liftCount = 0
+    homeData.floorCount = 0
+    queue.length = 0
+    liftCount.value = ""
+    floorCount.value = ""
+    topNav.classList.add("hide")
+    simulationsWrapper.classList.add("hide");
+    homeWrapper.classList.remove("hide");
+
+})
