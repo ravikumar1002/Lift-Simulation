@@ -27,7 +27,7 @@ floorCount.addEventListener("keyup", (e) => {
 
 startBtn.addEventListener("click", (e) => {
     e.preventDefault();
-
+    // ---- If block for checking inputs value for lift and floor
     if (checkInputLliftValidation(+homeData.liftCount, +homeData.floorCount) && checkInputLFloorValidation(+homeData.floorCount)) {
         homeWrapper.classList.add("hide");
         simulationsWrapper.classList.remove("hide");
@@ -41,6 +41,7 @@ startBtn.addEventListener("click", (e) => {
 
 
 backBtn.addEventListener("click", (e) => {
+    // ----- resetting all  value-----
     e.preventDefault()
     homeData.liftCount = 0
     homeData.floorCount = 0
