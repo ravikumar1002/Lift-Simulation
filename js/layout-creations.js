@@ -16,6 +16,7 @@ const callLift = (i, liftPosition, liftStatus) => {
     liftButtons.forEach((btn) => {
         btn.addEventListener("click", () => {
 
+            // ---- disabled that floor button because currently it's actived----------------
             liftButtons[0].disabled = true;
             liftButtons[1].disabled = true;
             liftButtons[0].style.cursor = "not-allowed"
@@ -45,8 +46,6 @@ const callLift = (i, liftPosition, liftStatus) => {
                 if (queue.length === 0)
                     clearInterval(timeout)
             }
-            // liftButtons[0].style.opacity = "1"
-            // liftButtons[1].style.opacity = "1"
         });
     });
 };
