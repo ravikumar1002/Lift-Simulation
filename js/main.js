@@ -27,7 +27,6 @@ floorCount.addEventListener("keyup", (e) => {
 
 startBtn.addEventListener("click", (e) => {
     e.preventDefault();
-    queue.length = 0
     liftCount.value = null
     floorCount.value = null
     // ---- If block for checking inputs value for lift and floor

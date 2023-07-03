@@ -10,7 +10,7 @@ const moveLift = (i, liftPosition, liftStatus, emptyLift) => {
     let floorHeight = document.querySelector(".floor-details").offsetHeight;
     // ---------Finding difference between call lift floor and empty lift floor ------------
     const time = `${Math.abs(i - liftPosition[emptyLift]) * 2}`;
-    
+
     // ----- Moving  lift through css properties ---------
     lift.style.transform = `translateY(-${i * floorHeight}px)`;
     lift.style.transition = `transform ${time}s ease-in-out 0s`;
@@ -27,12 +27,6 @@ const moveLift = (i, liftPosition, liftStatus, emptyLift) => {
     // ------closing Doors ---------
     setTimeout(() => {
 
-        // ---- enable that floor button because lift reached----------------
-        liftButtons[0].disabled = false;
-        liftButtons[1].disabled = false;
-        liftButtons[0].style.cursor = "pointer"
-        liftButtons[1].style.cursor = "pointer"
-
         liftDoors[0].style.transform = `translateX(0%)`;
         liftDoors[0].style.transition = `all 2s ease-in-out 1s`;
 
@@ -41,6 +35,11 @@ const moveLift = (i, liftPosition, liftStatus, emptyLift) => {
 
         // ---- Changing Lift status, ture to false ----------
         setTimeout(() => {
+            // ---- enable that floor button because lift reached----------------
+            liftButtons[0].disabled = false;
+            liftButtons[1].disabled = false;
+            liftButtons[0].style.cursor = "pointer"
+            liftButtons[1].style.cursor = "pointer"
             liftStatus[emptyLift] = false;
         }, 2500);
     }, (+time + 3.5) * 1000);
