@@ -1,3 +1,4 @@
+
 // ---------------- Lift move function--------
 
 const moveLift = (i, liftPosition, liftStatus, emptyLift) => {
@@ -6,10 +7,8 @@ const moveLift = (i, liftPosition, liftStatus, emptyLift) => {
     const lift = document.querySelector(`#lift-num-${emptyLift}`);
     const liftDoors = document.querySelectorAll(`#lift-num-${emptyLift}>div`);
     let floorHeight = document.querySelector(".floor-details").offsetHeight;
-
     // ---------Finding difference between call lift floor and empty lift floor ------------
     const time = `${Math.abs(i - liftPosition[emptyLift]) * 2}`;
-
     // ----- Moving  lift through css properties ---------
     lift.style.transform = `translateY(-${i * floorHeight}px)`;
     lift.style.transition = `transform ${time}s ease-in-out 0s`;

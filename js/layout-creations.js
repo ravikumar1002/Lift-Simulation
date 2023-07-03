@@ -1,4 +1,5 @@
 
+
 // ----creating element through Js and adding necessary attribute-------
 const createElementAndAddAttr = (elementTag, className, id) => {
     const element = document.createElement(elementTag);
@@ -6,6 +7,7 @@ const createElementAndAddAttr = (elementTag, className, id) => {
     if (id) element.setAttribute("id", id);
     return element;
 };
+
 
 // ----- Call lift function for every floor button-----------
 const callLift = (i, liftPosition, liftStatus) => {
