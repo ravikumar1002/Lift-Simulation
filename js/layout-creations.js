@@ -11,11 +11,15 @@ const createElementAndAddAttr = (elementTag, className, id) => {
 
 // ----- Call lift function for every floor button-----------
 const callLift = (i, liftPosition, liftStatus) => {
-    const btn = document.querySelectorAll(`button[data-floor="${i}"]`);
+    const liftButtons = document.querySelectorAll(`button[data-floor="${i}"]`);
 
-    btn.forEach((btn) => {
+    liftButtons.forEach((btn) => {
         btn.addEventListener("click", () => {
 
+            liftButtons[0].disabled = true;
+            liftButtons[1].disabled = true;
+            liftButtons[0].style.cursor = "not-allowed"
+            liftButtons[1].style.cursor = "not-allowed"
             // ------ if queue is empty then this block will work and inside that if lift is empty then move lift will call otherwise this will  push to queue---
             if (queue.length === 0) {
                 const findEmptyLiftIn = liftStatus.findIndex((status) => status === false);
@@ -41,6 +45,8 @@ const callLift = (i, liftPosition, liftStatus) => {
                 if (queue.length === 0)
                     clearInterval(timeout)
             }
+            // liftButtons[0].style.opacity = "1"
+            // liftButtons[1].style.opacity = "1"
         });
     });
 };
