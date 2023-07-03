@@ -27,8 +27,12 @@ floorCount.addEventListener("keyup", (e) => {
 
 startBtn.addEventListener("click", (e) => {
     e.preventDefault();
+    queue.length = 0
+    liftCount.value = null
+    floorCount.value = null
     // ---- If block for checking inputs value for lift and floor
     if (checkInputLliftValidation(+homeData.liftCount, +homeData.floorCount) && checkInputLFloorValidation(+homeData.floorCount)) {
+
         homeWrapper.classList.add("hide");
         simulationsWrapper.classList.remove("hide");
         topNav.classList.add("top-nav")
@@ -46,8 +50,8 @@ backBtn.addEventListener("click", (e) => {
     homeData.liftCount = 0
     homeData.floorCount = 0
     queue.length = 0
-    liftCount.value = ""
-    floorCount.value = ""
+    // liftCount.value = ""
+    // floorCount.value = ""
     topNav.classList.remove("top-nav")
     topNav.classList.add("hide")
     simulationsWrapper.classList.add("hide");
