@@ -9,6 +9,12 @@ const createElementAndAddAttr = (elementTag, className, id) => {
 };
 
 
+
+const findNearestEmptyLift = (calledFloor, liftStatus, liftPosition) => {
+        
+}
+
+
 // ----- Call lift function for every floor button-----------
 const callLift = (i, liftPosition, liftStatus) => {
     const liftButtons = document.querySelectorAll(`button[data-floor="${i}"]`);
