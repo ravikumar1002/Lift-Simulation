@@ -15,12 +15,15 @@ const callLift = (i, liftPosition, liftStatus) => {
 
     liftButtons.forEach((btn) => {
         btn.addEventListener("click", () => {
-
+            console.log(liftButtons)
             // ---- disabled that floor button because currently it's actived----------------
             liftButtons[0].disabled = true;
-            liftButtons[1].disabled = true;
             liftButtons[0].style.cursor = "not-allowed"
-            liftButtons[1].style.cursor = "not-allowed"
+            if (liftButtons[1]) {
+                liftButtons[1].disabled = true;
+                liftButtons[1].style.cursor = "not-allowed"
+            }
+
             // ------ if queue is empty then this block will work and inside that if lift is empty then move lift will call otherwise this will  push to queue---
             if (queue.length === 0) {
                 const findEmptyLiftIn = liftStatus.findIndex((status) => status === false);
