@@ -10,13 +10,28 @@ const createElementAndAddAttr = (elementTag, className, id) => {
 
 
 
-const findNearestEmptyLift = (calledFloor, liftStatus, liftPosition) => {
-        
+const findNearestEmptyLift = (calledFloor, liftStatus, liftPosition, totalFloor) => {
+    let nearestLiftDiff = totalFloor + 1
+    let emptyLiftIndex = -1
+
+    liftStatus.forEach((status, i) => {
+        const diff = Math.abs(+calledFloor - liftPosition[i])
+        console.log(diff, calledFloor, liftStatus, liftPosition, totalFloor, status)
+        if (status === false && diff < nearestLiftDiff) {
+            console.log("near lift func")
+            emptyLiftIndex = i
+            nearestLiftDiff = diff
+        }
+    })
+
+    console.log(emptyLiftIndex, nearestLiftDiff)
+
+    return emptyLiftIndex
 }
 
 
 // ----- Call lift function for every floor button-----------
-const callLift = (i, liftPosition, liftStatus) => {
+const callLift = (i, liftPosition, liftStatus, totalFloor) => {
     const liftButtons = document.querySelectorAll(`button[data-floor="${i}"]`);
 
     liftButtons.forEach((btn) => {
@@ -32,20 +47,29 @@ const callLift = (i, liftPosition, liftStatus) => {
 
             // ------ if queue is empty then this block will work and inside that if lift is empty then move lift will call otherwise this will  push to queue---
             if (queue.length === 0) {
-                const findEmptyLiftIn = liftStatus.findIndex((status) => status === false);
+                // const findEmptyLiftIn = liftStatus.findIndex((status) => status === false);
+                const findEmptyLiftIn = findNearestEmptyLift(i, liftStatus, liftPosition, totalFloor)
+                console.log(findEmptyLiftIn)
                 if (findEmptyLiftIn + 1) {
+                    console.log("lift avail")
                     moveLift(i, liftPosition, liftStatus, findEmptyLiftIn);
                 } else {
+                    console.log("lift busy")
                     queue.push(i);
+                    console.log(queue)
                 }
             } else {
                 // --- finding that floor in queue
                 if (!queue.includes(i)) queue.push(i);
-
+                console.log(queue)
                 // ----- setInterval for looping till queue will goes empty
                 let timeout = setInterval(() => {
-                    const findLiftEmptyIn = liftStatus.findIndex((status) => status === false);
+                    // console.log(findNearestEmptyLift(i, liftPosition, liftStatus, totalFloor))
+                    // const findLiftEmptyIn = liftStatus.findIndex((status) => status === false);
+                    const findLiftEmptyIn = findNearestEmptyLift(i, liftStatus, liftPosition, totalFloor)
+                    console.log(findLiftEmptyIn, "timeout")
                     if (findLiftEmptyIn + 1 && queue.length > 0) {
+                        console.log(queue, "queue move")
                         moveLift(queue[0], liftPosition, liftStatus, findLiftEmptyIn);
                         queue.shift();
                     }
@@ -104,7 +128,7 @@ const createLayoutOfFloor = (floor, lift) => {
         }
         simulationsWrapper.append(floorLiftContainer);
         floorLiftContainer.append(floorDetailsDummy);
-        callLift(i, liftPosition, liftStatus);
+        callLift(i, liftPosition, liftStatus, floor);
     }
     createLift(lift);
 };
