@@ -10,8 +10,8 @@ const show = document.querySelector(".show");
 
 
 const homeData = {
-    liftCount: 2,
-    floorCount: 10,
+    liftCount: 0,
+    floorCount: 0,
 };
 
 const queue = [];
