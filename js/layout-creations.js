@@ -8,7 +8,7 @@ const createElementAndAddAttr = (elementTag, className, id) => {
     return element;
 };
 
-
+// --- finding nearest lift ---------
 const findNearestEmptyLift = (calledFloor, liftStatus, liftPosition, totalFloor) => {
     let nearestLiftDiff = totalFloor + 1
     let emptyLiftIndex = -1
