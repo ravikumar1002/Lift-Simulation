@@ -9,7 +9,7 @@ const moveLift = (i, liftPosition, liftStatus, emptyLift) => {
     const liftDoors = document.querySelectorAll(`#lift-num-${emptyLift}>div`);
     let floorHeight = document.querySelector(".floor-details").offsetHeight;
     // ---------Finding difference between call lift floor and empty lift floor ------------
-    const time = `${Math.abs(i - liftPosition[emptyLift]) * 2}`;
+    const time = `${Math.abs(i - liftPosition[emptyLift]) * LIFT_MOVING_FLOOR_TIME}`;
 
     // ----- Moving  lift through css properties ---------
     lift.style.transform = `translateY(-${i * floorHeight}px)`;
@@ -18,20 +18,20 @@ const moveLift = (i, liftPosition, liftStatus, emptyLift) => {
     // ----- Opening Doors -------
     setTimeout(() => {
         liftDoors[0].style.transform = `translateX(-95%)`;
-        liftDoors[0].style.transition = `all 2s ease-in-out 1s`;
+        liftDoors[0].style.transition = `all ${DOOR_OPENING_TIME}s ease-in-out 1s`;
 
         liftDoors[1].style.transform = `translateX(95%)`;
-        liftDoors[1].style.transition = `all 2s ease-in-out 1s`;
+        liftDoors[1].style.transition = `all ${DOOR_OPENING_TIME}s ease-in-out 1s`;
     }, +time * 1000 + 500);
 
     // ------closing Doors ---------
     setTimeout(() => {
 
         liftDoors[0].style.transform = `translateX(0%)`;
-        liftDoors[0].style.transition = `all 2s ease-in-out 1s`;
+        liftDoors[0].style.transition = `all ${DOOR_CLOSING_TIME}s ease-in-out 1s`;
 
         liftDoors[1].style.transform = `translateX(0%)`;
-        liftDoors[1].style.transition = `all 2s ease-in-out 1s`;
+        liftDoors[1].style.transition = `all ${DOOR_CLOSING_TIME}s ease-in-out 1s`;
 
         // ---- Changing Lift status, ture to false ----------
         setTimeout(() => {

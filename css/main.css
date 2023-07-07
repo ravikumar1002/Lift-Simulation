@@ -14,6 +14,7 @@ body {
 
 :root {
   --secondary-bg: #3a4f4f;
+
 }
 
 .wrapper {
@@ -21,7 +22,7 @@ body {
   position: relative;
 }
 
-.heading{
+.heading {
   font-size: 3rem;
 }
 
@@ -246,7 +247,7 @@ body {
     padding: 2rem;
   }
 
-  .heading{
+  .heading {
     font-size: 2rem;
   }
 
